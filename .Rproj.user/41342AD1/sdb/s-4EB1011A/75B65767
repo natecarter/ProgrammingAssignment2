@@ -1,0 +1,17 @@
+{
+    "contents" : "# This function creates a special \"matrix\" object that can cache its inverse\n# The function makes use of R's Lexical Scoping by creating a variable \n# inside a different environment\nmakeCacheMatrix <- function(x = matrix()) {\n  m <- NULL\n    set <- function(y){\n      x<<-y\n      m<<-NULL\n    }\n    \n  get <- function() x\n  setmatrix <- function(solve) m <<- solve\n  getmatrix <- function() m\n  list(set=set, get=get,setmatrix=setmatrix,getmatrix=getmatrix)\n}\n\n# This function completes the inverse of the special \"matrix\"\n# returned by makeCacheMatrix above.  If the inverse has already\n# been calculated (and the matrix has not changed), then the cachesolve\n# should retrieve the inverse from the cache.\n\ncacheSolve <- function(x=matrix(), ...) {\n  m <-x$getmatrix()\n    if(!is.null(m)){\n      message(\"getting cached data\")\n      return(m)\n    }\n  \n  matrix <- x$get()\n  m <- solve(matrix, ...)\n  x$setmatrix(m)\n  m\n}",
+    "created" : 1443054142102.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2525949783",
+    "id" : "75B65767",
+    "lastKnownWriteTime" : 1443383664,
+    "path" : "C:/Users/nate/Desktop/Coursera/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : true,
+    "type" : "r_source"
+}
